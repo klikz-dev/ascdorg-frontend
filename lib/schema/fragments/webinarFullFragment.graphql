@@ -1,0 +1,36 @@
+#import "./seoFragment.graphql"
+#import "./bookFragment.graphql"
+#import "./profileSummaryFragment.graphql"
+#import "./imageFragment.graphql"
+
+fragment WebinarFullFragment on Webinar {
+  sys {
+    id
+  }
+  topicSecondary: topicSecondaryCollection(limit: 10) {
+    items {
+      title
+    }
+  }
+  featuredBook {
+    ...BookFragment
+    featuredImage {
+      ...ImageFragment
+    }
+  }
+  seo {
+    ...SeoFragment
+  }
+  topic {
+    title
+  }
+  premium
+  description {
+    json
+  }
+  authors: authorsCollection(limit: 7) {
+    items {
+      ...ProfileSummaryFragment
+    }
+  }
+}

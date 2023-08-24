@@ -1,0 +1,7 @@
+#import "./fragments/componentTwoColumnCtaFragment.graphql"
+
+query GetTwoColumnCta($preview: Boolean, $id: String!, $ctaLimit: Int = 5) {
+  twoColCta: componentTwoColumnCta(id: $id, preview: $preview) {
+    ...ComponentTwoColumnCtaFragment
+  }
+}

@@ -1,0 +1,7 @@
+query GetProfileList($preview: Boolean, $limit: Int = 100) {
+  profiles: profileCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

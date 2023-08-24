@@ -1,0 +1,15 @@
+#import "./memberPriceComponentFragment.graphql"
+#import "./featuredContentHorizontalFragment.graphql"
+
+fragment PageDetailFragmentFive on Page {
+  content: contentCollection(skip: $skip) {
+    items {
+      ... on MemberPriceComponent {
+        ...MemberPriceComponentFragment
+      }
+      ... on FeaturedContentHorizontal {
+        ...FeaturedContentHorizontalFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+#import "./imageFragment.graphql"
+
+fragment ComponentTwoColumnContentListFragment on ComponentTwoColumnContentList {
+  title
+  twoColContentListBody: body {
+    json
+  }
+  listItem: listItemCollection(limit: $twoColCtaListItemsLimit) {
+    items {
+      title
+      body
+      thumbnail: image {
+        ...ImageFragment
+      }
+      url
+    }
+  }
+}

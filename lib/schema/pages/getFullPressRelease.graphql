@@ -1,0 +1,22 @@
+#import "../fragments/pressReleaseFragment.graphql"
+#import "../fragments/pressReleaseFullFragment.graphql"
+
+query GetFullPressRelease(
+  $preview: Boolean
+  $limit: Int
+  $where: PressReleaseFilter
+  $order: [PressReleaseOrder]
+  $secondaryTopicsLimit: Int = 5
+) {
+  pressReleases: pressReleaseCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...PressReleaseFragment
+      ...PressReleaseFullFragment
+    }
+  }
+}

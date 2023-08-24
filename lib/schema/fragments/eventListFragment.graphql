@@ -1,0 +1,18 @@
+#import "./imageFragment.graphql"
+
+fragment EventListFragment on Event {
+  title
+  slug
+  premium
+  dateTime
+  endingTime
+  type {
+    title
+  }
+  topic {
+    title
+  }
+  thumbnail {
+    ...ImageFragment
+  }
+}

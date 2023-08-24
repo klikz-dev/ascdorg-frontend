@@ -1,0 +1,38 @@
+#import "../fragments/videoFragment.graphql"
+#import "../fragments/videoFullFragment.graphql"
+
+query GetVideo(
+  $preview: Boolean
+  $videoLimit: Int
+  $videosLimit: Int
+  $whereVideo: VideoFilter
+  $whereVideos: VideoFilter
+  $orderVideo: [VideoOrder]
+  $orderVideos: [VideoOrder]
+  $bookVersionLimit: Int = 3
+  $collectionLimit: Int = 0
+) {
+  video: videoCollection(
+    limit: $videoLimit
+    preview: $preview
+    where: $whereVideo
+    order: $orderVideo
+  ) {
+    items {
+      ...VideoFragment
+      ...VideoFullFragment
+    }
+  }
+
+  videos: videoCollection(
+    preview: $preview
+    limit: $videosLimit
+    where: $whereVideos
+    order: $orderVideos
+  ) {
+    items {
+      ...VideoFragment
+      ...VideoFullFragment
+    }
+  }
+}

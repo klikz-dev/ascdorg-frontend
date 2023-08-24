@@ -1,0 +1,33 @@
+#import "./buttonLinkComponentFragment.graphql"
+#import "./imageFragment.graphql"
+
+fragment TwoColumnCtaTextComponentFragment on TwoColumnCtaTextComponent {
+  titleOne
+  titleOneAlignment
+  titleTwo
+  titleTwoAlignment
+  bodyOne {
+    json
+  }
+  bodyOneAlignment
+  bodyTwo {
+    json
+  }
+  bodyTwoAlignment
+  ctaLinksOne: ctaLinksOneCollection(limit: $ctaLinksOneLimit) {
+    items {
+      ...ButtonLinkComponentFragment
+    }
+  }
+  ctaLinksOneAlignment
+  ctaLinksTwo: ctaLinksTwoCollection(limit: $ctaLinksTwoLimit) {
+    items {
+      ...ButtonLinkComponentFragment
+    }
+  }
+  ctaLinksTwoAlignment
+  backgroundColor
+  backgroundImage {
+    ...ImageFragment
+  }
+}

@@ -1,0 +1,21 @@
+#import "../fragments/profileSummaryFragmentFull.graphql"
+
+query GetProfileSummary(
+  $preview: Boolean
+  $limit: Int
+  $where: ProfileFilter
+  $order: [ProfileOrder]
+  $ctaLimit: Int = 4
+  $ctaLinksLimit: Int = 4
+) {
+  profiles: profileCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...ProfileSummaryFullFragment
+    }
+  }
+}

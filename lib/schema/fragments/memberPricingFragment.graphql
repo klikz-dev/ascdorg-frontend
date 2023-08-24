@@ -1,0 +1,28 @@
+fragment MemberPricingFragment on MemberPricingComponent {
+  body
+  title
+  bodyCentered
+  memberPricingItem: memberPricingItemCollection(limit: $memberPricingLimit) {
+    items {
+      ctaButton: ctaButtonCollection {
+        items {
+          linkUrl
+          linkLabel
+          linkTarget
+        }
+      }
+      symbol: moneySymbol
+      memberPricingBody: richTextBody {
+        json
+      }
+      label: popularLabel
+      popular
+      price
+      title
+      titleCentered
+      bodyCentered
+      term
+      bulletPoint
+    }
+  }
+}

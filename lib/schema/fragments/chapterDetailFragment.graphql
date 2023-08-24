@@ -1,0 +1,79 @@
+fragment CharpterDetail on Chapter {
+  body {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          fileName
+          url
+          width
+          height
+          contentType
+        }
+        hyperlink {
+          title
+          fileName
+          url
+          contentType
+        }
+      }
+      entries {
+        block {
+          sys {
+            id
+          }
+          __typename
+          ... on ComponentTableExtension {
+            title
+            data
+          }
+          ... on ComponentTable {
+            title
+            tableRowContentCollection(limit: 85) {
+              items {
+                title
+                tableColumnContentCollection {
+                  items {
+                    title
+                    columnContent {
+                      json
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  endnotes {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          title
+          fileName
+          url
+          width
+          height
+          contentType
+        }
+        hyperlink {
+          title
+          fileName
+          url
+          contentType
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+#import "./fragments/homeBannerItemFragment.graphql"
+
+query GetHomeBanner($preview: Boolean, $id: String!, $limit: Int) {
+  homeBanner: homeBannerComponent(id: $id, preview: $preview) {
+    homeBannerItems: homeBannerItemCollection(limit: $limit) {
+      items {
+        ...HomeBannerItemFragment
+      }
+    }
+  }
+}

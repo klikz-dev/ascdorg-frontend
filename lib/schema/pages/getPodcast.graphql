@@ -1,0 +1,38 @@
+#import "../fragments/podcastFragment.graphql"
+#import "../fragments/podcastFullFragment.graphql"
+
+query GetPodcast(
+  $preview: Boolean
+  $podcastLimit: Int
+  $podcastsLimit: Int
+  $wherePodcast: PodcastFilter
+  $wherePodcasts: PodcastFilter
+  $orderPodcast: [PodcastOrder]
+  $orderPodcasts: [PodcastOrder]
+  $bookVersionLimit: Int = 3
+  $collectionLimit: Int = 0
+) {
+  podcast: podcastCollection(
+    limit: $podcastLimit
+    preview: $preview
+    where: $wherePodcast
+    order: $orderPodcast
+  ) {
+    items {
+      ...PodcastFragment
+      ...PodcastFullFragment
+    }
+  }
+
+  podcasts: podcastCollection(
+    preview: $preview
+    limit: $podcastsLimit
+    where: $wherePodcasts
+    order: $orderPodcasts
+  ) {
+    items {
+      ...PodcastFragment
+      ...PodcastFullFragment
+    }
+  }
+}

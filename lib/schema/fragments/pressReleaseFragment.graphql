@@ -1,0 +1,13 @@
+#import "./imageFragment.graphql"
+
+fragment PressReleaseFragment on PressRelease {
+  title
+  slug
+  image: thumbnail {
+    ...ImageFragment
+  }
+  topic {
+    title
+  }
+  issueDate: date
+}

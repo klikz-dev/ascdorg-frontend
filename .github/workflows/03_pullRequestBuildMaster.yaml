@@ -1,0 +1,169 @@
+name: 03 (Auto) Pull Request Build Master
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [stage]
+    paths-ignore:
+      - '.github/**'
+      - '.githooks/**'
+      - '**.md'
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Git checkout
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 14
+
+      - name: Setup .npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.RELEASE_WORKFLOW_TOKEN }}" > ~/.npmrc
+
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        id: deps
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      # Creating .env file for build
+      - name: Create .env file
+        run: |
+          touch .env
+          echo MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} >> .env
+          echo MYSQL_HOST=${{ secrets.MYSQL_HOST }} >> .env
+          echo MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD_MASTER }} >> .env
+          echo MYSQL_PORT=${{ secrets.MYSQL_PORT }} >> .env
+          echo MYSQL_USERNAME=${{ secrets.MYSQL_USERNAME_MASTER }} >> .env
+          echo MYSQL_DATABASE_MDB=${{ secrets.MYSQL_DATABASE }} >> .env
+          echo MYSQL_HOST_MDB=${{ secrets.MYSQL_HOST }} >> .env
+          echo MYSQL_PASSWORD_MDB=${{ secrets.MYSQL_PASSWORD }} >> .env
+          echo MYSQL_PORT_MDB=${{ secrets.MYSQL_PORT }} >> .env
+          echo MYSQL_USERNAME_MDB=${{ secrets.MYSQL_USERNAME }} >> .env
+          echo NEXT_PUBLIC_ALGOLIA_APP_ID=${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }} >> .env
+          echo NEXT_PUBLIC_ALGOLIA_INDEX_ID=${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_ID_MASTER }} >> .env
+          echo NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY=${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY }} >> .env
+          echo NEXT_PUBLIC_ALGOLIA_WRITE_API_KEY=${{ secrets.NEXT_PUBLIC_ALGOLIA_WRITE_API_KEY }} >> .env
+          echo NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN_MASTER }} >> .env
+          echo NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT_MASTER }} >> .env
+          echo NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN_MASTER }} >> .env
+          echo NEXT_PUBLIC_CONTENTFUL_SPACE_ID=${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }} >> .env
+          echo NEXT_PUBLIC_COOKIE_API_URL=${{ secrets.NEXT_PUBLIC_COOKIE_API_URL }} >> .env
+          echo NEXT_PUBLIC_WITSBY_URL=${{ secrets.NEXT_PUBLIC_WITSBY_URL }} >> .env
+          echo NEXT_PUBLIC_PIANO_API_BASE_URL=${{ secrets.NEXT_PUBLIC_PIANO_API_BASE_URL_MASTER }} >> .env
+          echo NEXT_PUBLIC_PIANO_API_KEY=${{ secrets.NEXT_PUBLIC_PIANO_API_KEY_MASTER }} >> .env
+          echo NEXT_PUBLIC_PIANO_APP_ID=${{ secrets.NEXT_PUBLIC_PIANO_APP_ID_MASTER }} >> .env
+          echo NEXT_PUBLIC_PIANO_ID_API_BASE_URL=${{ secrets.NEXT_PUBLIC_PIANO_ID_API_BASE_URL }} >> .env
+          echo NEXT_PUBLIC_PIANO_JS_ENDPOINT=${{ secrets.NEXT_PUBLIC_PIANO_JS_ENDPOINT }} >> .env
+          echo NEXT_PUBLIC_PIANO_PRIVATE_KEY=${{ secrets.NEXT_PUBLIC_PIANO_PRIVATE_KEY }} >> .env
+          echo NEXT_PUBLIC_SECRET_SNIPCART_API_KEY=${{ secrets.NEXT_PUBLIC_SECRET_SNIPCART_API_KEY }} >> .env
+          echo NEXT_PUBLIC_SNIPCART_JS_DATA_API_KEY=${{ secrets.NEXT_PUBLIC_SNIPCART_JS_DATA_API_KEY }} >> .env
+          echo NEXT_PUBLIC_SNIPCART_ORDER_VALIDATION_BASE_URL=${{ secrets.NEXT_PUBLIC_SNIPCART_ORDER_VALIDATION_BASE_URL }} >> .env
+          echo NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }} >> .env
+          echo NEXT_PUBLIC_WISTIA_API_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_WISTIA_API_ACCESS_TOKEN }} >> .env
+          echo NEXT_PUBLIC_BASE64_ENCODED_ORDERS_SNIPCART_SECRET=${{ secrets.NEXT_PUBLIC_BASE64_ENCODED_ORDERS_SNIPCART_SECRET }} >> .env
+          echo NEXT_PUBLIC_YES_ELECTIONS_ASCD_CUSTOMER_ID=${{ secrets.NEXT_PUBLIC_YES_ELECTIONS_ASCD_CUSTOMER_ID }} >> .env
+          echo NEXT_PUBLIC_YES_ELECTIONS_URI=${{ secrets.NEXT_PUBLIC_YES_ELECTIONS_URL }} >> .env
+          echo STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} >> .env
+          echo NEXT_PUBLIC_REALM_APP_BASE_URL=${{ secrets.NEXT_PUBLIC_REALM_APP_BASE_URL }} >> .env
+          echo NEXT_PUBLIC_REALM_APP_ID=${{ secrets.NEXT_PUBLIC_REALM_APP_ID }} >> .env
+          echo NEXT_PUBLIC_REALM_APP_KEY=${{ secrets.NEXT_PUBLIC_REALM_APP_KEY }} >> .env
+          echo NEXT_PUBLIC_BASE_PATH=${{ secrets.NEXT_PUBLIC_BASE_PATH }} >> .env
+          echo NEXT_PUBLIC_SAMPLES_TRACE_RATE=${{ secrets.NEXT_PUBLIC_SAMPLES_TRACE_RATE}} >> .env
+          echo SENTRY_ORG=${{ secrets.SENTRY_ORG }} >> .env
+          echo SENTRY_PROJECT=${{ secrets.SENTRY_PROJECT }} >> .env
+          echo SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} >> .env
+          echo NEXT_PUBLIC_SENTRY_DSN=${{ secrets.NEXT_PUBLIC_SENTRY_DSN }} >> .env
+          echo NEXT_PUBLIC_OKTA_ISSUER=${{ secrets.NEXT_PUBLIC_OKTA_ISSUER }} >> .env
+          echo NEXT_PUBLIC_OKTA_CLIENT_ID=${{ secrets.NEXT_PUBLIC_OKTA_CLIENT_ID }} >> .env
+          echo NEXT_PUBLIC_OKTA_REDIRECT_URI_PATH=${{ secrets.NEXT_PUBLIC_OKTA_REDIRECT_URI_PATH }} >> .env
+          echo OKTA_TEST_USERNAME=${{ secrets.OKTA_TEST_USERNAME }} >> .env
+          echo OKTA_TEST_PASSWORD=${{ secrets.OKTA_TEST_PASSWORD }} >> .env
+          cat .env
+
+      - name: upload env
+        uses: actions/upload-artifact@v3
+        with:
+          name: env-file
+          path: .env
+          retention-days: 1
+
+      - name: Run build
+        id: build
+        run: npm run build
+
+      - name: upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: next-js-build
+          path: .next/
+          retention-days: 1
+
+  playwright:
+    name: Playwright Tests - ${{ matrix.project}}
+    timeout-minutes: 60
+    needs: build
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [
+            chromium,
+            firefox,
+            webkit,
+            mobile-chrome,
+            # mobile-safari,
+            microsoft-edge,
+          ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 14
+
+      - name: Setup .npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.RELEASE_WORKFLOW_TOKEN }}" > ~/.npmrc
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Download env file
+        uses: actions/download-artifact@v3
+        with:
+          name: env-file
+          path: .
+      - name: Download build
+        uses: actions/download-artifact@v3
+        with:
+          name: next-js-build
+          path: .next
+      - name: Run Playwright tests
+        run: npx playwright test --project=${{ matrix.project }}
+
+  delete:
+    name: Delete Artifacts
+    timeout-minutes: 60
+    needs: playwright
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Delete artifacts after usage
+        if: success()
+        uses: geekyeggo/delete-artifact@v2
+        with:
+          name: |
+            env-file
+            next-js-build

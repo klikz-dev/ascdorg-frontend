@@ -1,0 +1,23 @@
+#import "../fragments/blogFragment.graphql"
+#import "../fragments/blogFullFragment.graphql"
+
+query GetFullBlog(
+  $preview: Boolean
+  $limit: Int
+  $where: BlogFilter
+  $order: [BlogOrder]
+  $secondaryTopicsLimit: Int = 5
+  $authorsLimit: Int = 5
+) {
+  blogs: blogCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...BlogFragment
+      ...BlogFullFragment
+    }
+  }
+}

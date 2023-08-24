@@ -1,0 +1,59 @@
+fragment EmbedHtmlComponentFragment on EmbedHtmlComponent {
+  displayTitle
+  displayTitleTextAlignment
+  body {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          url
+          width
+          height
+          contentType
+        }
+        hyperlink {
+          title
+          url
+          contentType
+        }
+      }
+      entries {
+        hyperlink {
+          ... on Page {
+            sys {
+              id
+            }
+            slug
+          }
+        }
+        inline {
+          sys {
+            id
+          }
+          __typename
+          ... on ButtonLinkComponent {
+            ...ButtonLinkComponentFragment
+          }
+        }
+        block {
+          sys {
+            id
+          }
+          __typename
+          ... on ButtonLinkComponent {
+            ...ButtonLinkComponentFragment
+          }
+        }
+      }
+    }
+  }
+  bodyTextAlignment
+  htmlCode
+  displayFormat
+  backgroundColor
+}

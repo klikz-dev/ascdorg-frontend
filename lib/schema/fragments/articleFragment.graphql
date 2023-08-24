@@ -1,0 +1,34 @@
+#import "./imageFragment.graphql"
+
+fragment ArticleFragment on Article {
+  sys {
+    id
+    publishedAt
+  }
+  title
+  slug
+  image {
+    ...ImageFragment
+  }
+  featured
+  premium
+  topic {
+    title
+  }
+  authors: authorsCollection(limit: 10) {
+    items {
+      thumbnail {
+        ...ImageFragment
+      }
+      title
+      firstName
+      lastName
+      slug
+      description {
+        json
+      }
+    }
+  }
+  issueDate
+  elArticleType
+}

@@ -1,0 +1,7 @@
+#import "./fragments/componentRichTextFragment.graphql"
+
+query GetRichText($preview: Boolean, $id: String!) {
+  richText: componentRichText(id: $id, preview: $preview) {
+    ...ComponentRichTextFragment
+  }
+}

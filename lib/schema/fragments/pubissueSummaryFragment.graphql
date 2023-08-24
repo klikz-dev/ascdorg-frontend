@@ -1,0 +1,11 @@
+#import "./imageFragment.graphql"
+fragment PubissueSummaryFragment on Pubissue {
+  title
+  slug
+  issueNo
+  volNo
+  publicationDate
+  thumbnail {
+    ...ImageFragment
+  }
+}

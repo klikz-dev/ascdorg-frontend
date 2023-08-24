@@ -1,0 +1,13 @@
+#import "./fragments/chapterDetailFragment.graphql"
+
+query GetChapter($preview: Boolean, $slug: String) {
+  chapters: chapterCollection(
+    preview: $preview
+    where: { slug: $slug }
+    limit: 1
+  ) {
+    items {
+      ...CharpterDetail
+    }
+  }
+}

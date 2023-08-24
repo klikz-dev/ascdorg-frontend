@@ -1,0 +1,33 @@
+#import "./imageFragment.graphql"
+#import "./componentButtonFragment.graphql"
+
+fragment ComponentCtaFragment on ComponentCta {
+  title
+  titleAlignment
+  ctaBody: body {
+    json
+  }
+  bodyAlignment
+  ctaLinks: ctaLinksCollection(limit: $ctaLinksLimit) {
+    items {
+      linkUrl
+      linkTarget
+      linkLabel
+    }
+  }
+  backgroundColor
+  backgroundImage {
+    ...ImageFragment
+  }
+  roundedModule
+  ctaLink {
+    ... on ComponentButton {
+      ...ComponentButtonFragment
+    }
+    ... on ButtonLinkComponent {
+      linkUrl
+      linkTarget
+      linkLabel
+    }
+  }
+}

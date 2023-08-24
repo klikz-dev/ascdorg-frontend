@@ -1,0 +1,11 @@
+#import "./fragments/componentGridFragment.graphql"
+
+query GetComponentGrid(
+  $preview: Boolean
+  $id: String!
+  $gridItemsLimit: Int = 20
+) {
+  grid: componentGrid(id: $id, preview: $preview) {
+    ...ComponentGridFragment
+  }
+}

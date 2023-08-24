@@ -1,0 +1,17 @@
+fragment CarouselBlogFragment on Blog {
+  slug
+  thumbnail {
+    ...ImageFragment
+  }
+  title
+  topic {
+    title
+  }
+  authors: authorsCollection(limit: 7) {
+    items {
+      firstName
+      lastName
+    }
+  }
+  date
+}

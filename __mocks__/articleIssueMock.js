@@ -1,0 +1,43 @@
+export const issue = {
+  thumbnail: {
+    __typename: 'Image',
+    alternate: 'May 2022 Ready for the Real World? thumbnail',
+    title: 'May 2022 Ready for the Real World? thumbnail',
+    caption: null,
+    imgSrc: null,
+    imageContentful: null,
+    imageBynder: [
+      {
+        id: '180C74D4-5B55-4E45-8260A6A948667012',
+        src: 'https://library.ascd.org/m/59cf7fbfaed8251c/webimage-elmagazine_0522_Readyfor-the-RealWorld.jpg',
+        name: 'elmagazine_0522_Readyfor the RealWorld?',
+        type: 'image',
+        width: 2438,
+        height: 3150,
+        archive: 0,
+        brandId: '2154F1D0-CD10-4BE9-8B8E3480E8546AB1',
+        limited: 0,
+        fileSize: 2763979,
+        isPublic: 0,
+        original: null,
+        copyright: 'ILLUSTRATION BY CHRIS GASH',
+        extension: ['jpg'],
+        thumbnails: {
+          mini: 'https://library.ascd.org/m/59cf7fbfaed8251c/mini-elmagazine_0522_Readyfor-the-RealWorld.jpg',
+          thul: 'https://library.ascd.org/m/59cf7fbfaed8251c/thul-elmagazine_0522_Readyfor-the-RealWorld.jpg',
+          webimage:
+            'https://library.ascd.org/m/59cf7fbfaed8251c/webimage-elmagazine_0522_Readyfor-the-RealWorld.jpg',
+        },
+        dateCreated: '2022-04-06T17:24:14Z',
+        description: null,
+        orientation: 'portrait',
+        watermarked: 0,
+        dateModified: '2022-04-06T17:24:14Z',
+        datePublished: '2022-05-01T04:00:00Z',
+        videoPreviewURLs: [],
+      },
+    ],
+  },
+  title: 'Ready for the Real World?',
+  slug: 'ready-for-the-real-world',
+}

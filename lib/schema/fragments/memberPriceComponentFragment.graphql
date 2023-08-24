@@ -1,0 +1,33 @@
+fragment MemberPriceComponentFragment on MemberPriceComponent {
+  toggleButton {
+    leftTitle
+    rightTitle
+  }
+  memberPriceCollection(limit: $memberPriceCollectionLimit) {
+    items {
+      title
+      price
+      priceCaption
+      popular
+      popularTitle
+      button {
+        linkUrl
+        linkLabel
+        linkTarget
+        id
+      }
+      memberPriceItemCollection(limit: $memberPriceItemCollectionLimit) {
+        items {
+          description {
+            json
+          }
+          checkIcon
+          infoIcon
+          infoIconPopoverMessage {
+            json
+          }
+        }
+      }
+    }
+  }
+}

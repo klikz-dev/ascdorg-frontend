@@ -1,0 +1,7 @@
+query GetWorkshopList($preview: Boolean, $limit: Int = 100) {
+  workshops: workshopCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

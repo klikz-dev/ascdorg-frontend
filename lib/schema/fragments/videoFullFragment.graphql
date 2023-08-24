@@ -1,0 +1,27 @@
+#import "./seoFragment.graphql"
+#import "./bookFragment.graphql"
+
+fragment VideoFullFragment on Video {
+  sys {
+    id
+  }
+  slug
+  topicSecondary: topicSecondaryCollection(limit: 10) {
+    items {
+      title
+    }
+  }
+  featuredBook {
+    ...BookFragment
+  }
+  seo {
+    ...SeoFragment
+  }
+  topic {
+    title
+  }
+  premium
+  description {
+    json
+  }
+}

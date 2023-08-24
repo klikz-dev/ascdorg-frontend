@@ -1,0 +1,27 @@
+#import "./imageFragment.graphql"
+
+fragment BlogFragment on Blog {
+  title
+  slug
+  image: thumbnail {
+    ...ImageFragment
+  }
+  topic {
+    title
+  }
+  authors: authorsCollection(limit: $authorsLimit) {
+    items {
+      thumbnail {
+        ...ImageFragment
+      }
+      title
+      firstName
+      lastName
+      slug
+      description {
+        json
+      }
+    }
+  }
+  issueDate: date
+}

@@ -1,0 +1,26 @@
+fragment SubNavComponentFragment on SubNavComponent {
+  ctaButton: ctaButtonCollection(limit: $subNavComponentLimit) {
+    items {
+      ... on ButtonLinkComponent {
+        subNavButtonStyle: buttonStyle
+        subNavLinkUrl: linkUrl
+        subNavLinkLabel: linkLabel
+        subNavLinkTarget: linkTarget
+        subNavId: id
+      }
+    }
+  }
+  subNavDropDown {
+    ctaButton: ctaButtonCollection(limit: $subNavComponentLimit) {
+      items {
+        ... on ButtonLinkComponent {
+          dropDownButtonStyle: buttonStyle
+          dropDownLinkUrl: linkUrl
+          dropDownLinkLabel: linkLabel
+          dropDownLinkTarget: linkTarget
+          dropDownId: id
+        }
+      }
+    }
+  }
+}

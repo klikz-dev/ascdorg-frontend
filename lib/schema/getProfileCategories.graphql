@@ -1,0 +1,28 @@
+#import "./fragments/imageFragment.graphql"
+
+query getCategoryProfiles(
+  $preview: Boolean
+  $limit: Int
+  $where: CategoryProfilesFilter
+  $order: [CategoryProfilesOrder]
+  $authorsLimit: Int
+) {
+  categories: categoryProfilesCollection(
+    preview: $preview
+    limit: $limit
+    where: $where
+    order: $order
+  ) {
+    items {
+      linkedFrom {
+        authors: profileCollection(limit: $authorsLimit) {
+          items {
+            thumbnail {
+              ...ImageFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

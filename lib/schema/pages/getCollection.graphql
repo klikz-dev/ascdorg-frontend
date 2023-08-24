@@ -1,0 +1,79 @@
+#import "../fragments/collectionFragment.graphql"
+#import "../fragments/seoFragment.graphql"
+#import "../fragments/imageFragment.graphql"
+#import "../fragments/profileSummaryFragment.graphql"
+#import "../fragments/bookVersionFragment.graphql"
+
+query GetCollectionPage(
+  $preview: Boolean
+  $limit: Int
+  $where: CollectionFilter
+  $order: [CollectionOrder]
+  $collectionsLimit: Int = 10
+  $bookVersionLimit: Int = 5
+) {
+  collections: collectionCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      seo {
+        ...SeoFragment
+      }
+      about {
+        json
+      }
+      ...CollectionFragment
+      items: itemsCollection(limit: $collectionsLimit) {
+        items {
+          ... on Book {
+            title
+            slug
+            quickRead
+            memberBook
+            description {
+              json
+            }
+            thumbnail {
+              ...ImageFragment
+            }
+            authors: authorsCollection {
+              items {
+                ...ProfileSummaryFragment
+              }
+            }
+            bookVersions: bookVersionsCollection(limit: $bookVersionLimit) {
+              items {
+                ...BookVersionFragment
+              }
+            }
+          }
+          ... on Pubissue {
+            title
+            slug
+            issueNo
+            publicationDate
+            pubissueDesc: description
+            thumbnail {
+              ...ImageFragment
+            }
+            bookVersion {
+              dateRelease
+              title
+              productNumber
+              priceMember
+              priceNonMember
+              taxJar {
+                taxJarId
+              }
+              royaltyFlag
+              digitalFileGuid
+            }
+          }
+        }
+      }
+    }
+  }
+}

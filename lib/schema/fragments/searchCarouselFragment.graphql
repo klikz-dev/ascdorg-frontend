@@ -1,0 +1,19 @@
+fragment SearchCarouselFragment on SearchCarouselComponent {
+  indexName
+  title
+  ctaUrlLink
+  ctaUrlTarget
+  ctaLabel
+  scrollByAmount
+  type
+  topics
+  keywords
+  dateLowerRange
+  dateUpperRange
+  authors
+  featured
+  elArticleType
+  premium
+  memberBook
+  quickRead
+}

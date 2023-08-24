@@ -1,0 +1,7 @@
+fragment ButtonLinkComponentFragment on ButtonLinkComponent {
+  buttonStyle
+  linkUrl
+  linkLabel
+  linkTarget
+  id
+}

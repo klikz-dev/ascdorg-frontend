@@ -1,0 +1,20 @@
+#import "../fragments/blogFragment.graphql"
+
+query GetPartialBlog(
+  $preview: Boolean
+  $limit: Int
+  $where: BlogFilter
+  $order: [BlogOrder]
+  $authorsLimit: Int = 5
+) {
+  blogs: blogCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...BlogFragment
+    }
+  }
+}

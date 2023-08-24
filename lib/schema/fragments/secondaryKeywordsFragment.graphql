@@ -1,0 +1,3 @@
+fragment SecondaryKeywordsTagFragment on SecondaryKeywordsTag {
+  title
+}

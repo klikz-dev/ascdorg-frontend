@@ -1,0 +1,8 @@
+query getBookVersionPrices($preview: Boolean, $where: BookVersionFilter) {
+  bookVersions: bookVersionCollection(preview: $preview, where: $where) {
+    items {
+      priceMember
+      priceNonMember
+    }
+  }
+}

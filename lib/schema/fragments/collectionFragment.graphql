@@ -1,0 +1,22 @@
+fragment CollectionFragment on Collection {
+  slug
+  sys {
+    id
+  }
+  productNumber
+  memberOriginalPrice
+  originalPrice
+  memberDiscountedPrice
+  discountedPrice
+  title
+  description
+  thumbnail {
+    ...ImageFragment
+  }
+  featuredImage {
+    ...ImageFragment
+  }
+  taxJar {
+    taxJarId
+  }
+}

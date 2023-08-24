@@ -1,0 +1,6 @@
+fragment EmbeddedMediaFragment on EmbeddedMedia {
+  title
+  displayTitle
+  radio
+  wistiaId
+}

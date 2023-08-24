@@ -1,0 +1,35 @@
+#import "./imageFragment.graphql"
+#import "./componentButtonFragment.graphql"
+#import "./componentCartButtonFragment.graphql"
+
+fragment ComponentBannerFragment on ComponentBanner {
+  title
+  subtitle
+  titleAboveImage
+  titleCenterAlign
+  bannerBody: body {
+    json
+  }
+  imagePlacement
+  imageBorderCornerPosition
+  imageMobilePosition
+  backgroundColor
+  cta: ctaCollection {
+    items {
+      ... on ButtonLinkComponent {
+        linkUrl
+        linkLabel
+        linkTarget
+      }
+      ... on ComponentButton {
+        ...ComponentButtonFragment
+      }
+      ... on ComponentCartButton {
+        ...ComponentCartButtonFragment
+      }
+    }
+  }
+  image {
+    ...ImageFragment
+  }
+}

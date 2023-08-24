@@ -1,0 +1,11 @@
+#import "./fragments/componentTwoColumnContentListFragment.graphql"
+
+query GetTwoColContentList(
+  $preview: Boolean
+  $id: String!
+  $twoColCtaListItemsLimit: Int = 6
+) {
+  componentTwoColumnContentList(id: $id, preview: $preview) {
+    ...ComponentTwoColumnContentListFragment
+  }
+}

@@ -1,0 +1,21 @@
+#import "./imageFragment.graphql"
+#import "./componentGridItemFragment.graphql"
+
+fragment ComponentGridFragment on ComponentGrid {
+  title
+  gridBody: body {
+    json
+  }
+  bodyCentered
+  layout
+  gridItems: gridItemsCollection(limit: $gridItemsLimit) {
+    items {
+      ... on ComponentGridItem {
+        ...ComponentGridItemFragment
+      }
+      ... on Image {
+        ...ImageFragment
+      }
+    }
+  }
+}

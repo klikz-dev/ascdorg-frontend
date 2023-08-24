@@ -1,0 +1,7 @@
+#import "./fragments/buttonLinkComponentFragment.graphql"
+
+query GetButton($preview: Boolean, $id: String!) {
+  buttonLinkComponent(id: $id, preview: $preview) {
+    ...ButtonLinkComponentFragment
+  }
+}

@@ -1,0 +1,34 @@
+#import "./seoFragment.graphql"
+
+fragment ArticleFullFragment on Article {
+  blurb {
+    json
+  }
+  seo {
+    ...SeoFragment
+  }
+  pdf
+  pdfFile {
+    file: fileName
+  }
+  volumeNo
+  issueNo
+  topicSecondary: topicSecondaryCollection(limit: 7) {
+    items {
+      title
+    }
+  }
+  references {
+    json
+  }
+  endnotes {
+    json
+  }
+  abstract
+  shortAbstract {
+    json
+  }
+  departmentLabel {
+    title
+  }
+}

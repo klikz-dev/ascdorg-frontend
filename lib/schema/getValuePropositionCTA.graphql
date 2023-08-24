@@ -1,0 +1,11 @@
+#import "./fragments/valuePropositionCtaFragment.graphql"
+
+query GetValuePropositionCta(
+  $preview: Boolean
+  $id: String!
+  $ctaValuePropositionLimit: Int = 20
+) {
+  valuePropositionCta: valuePropositionCta(id: $id, preview: $preview) {
+    ...ValuePropositionCtaFragment
+  }
+}

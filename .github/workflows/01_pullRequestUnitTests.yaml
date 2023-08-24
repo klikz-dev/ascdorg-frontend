@@ -1,0 +1,61 @@
+name: 01 (Auto) Pull Request Unit Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [stage]
+    paths-ignore:
+      - '.github/**'
+      - '.githooks/**'
+      - '**.md'
+
+  issue_comment:
+    types: [created]
+
+env:
+  CI: true
+
+jobs:
+  test:
+    if: |
+      (startsWith(github.event.comment.body, '/test'))
+      || (github.event_name == 'pull_request')
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Git checkout
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 14
+
+      - name: Setup .npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.RELEASE_WORKFLOW_TOKEN }}" > ~/.npmrc
+
+      - name: Cache Node Modules
+        id: node-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        id: deps
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      # Creating .env.test file for tests that need them
+      - name: Create .env.test file
+        run: |
+          touch .env.test
+          echo NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }} >> .env.test
+          echo NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=${{ secrets.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT }} >> .env.test
+          echo NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN=${{ secrets.NEXT_PUBLIC_CONTENTFUL_PREVIEW_ACCESS_TOKEN }} >> .env.test
+          echo NEXT_PUBLIC_CONTENTFUL_SPACE_ID=${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }} >> .env.test
+          cat .env.test
+
+      - name: Run unit tests
+        id: test
+        run: npm run test

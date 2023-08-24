@@ -1,0 +1,73 @@
+#import "./anchorFragment.graphql"
+#import "./componentBannerFragment.graphql"
+#import "./componentCtaFragment.graphql"
+#import "./componentGridFragment.graphql"
+#import "./componentQuoteFragment.graphql"
+#import "./componentTableFragment.graphql"
+#import "./componentTipFragment.graphql"
+#import "./componentTwoColumnContentListFragment.graphql"
+#import "./componentTwoColumnCtaFragment.graphql"
+#import "./embeddedMediaFragment.graphql"
+#import "./featuredContentGridFragment.graphql"
+#import "./seoFragment.graphql"
+
+fragment PageDetailFragmentOne on Page {
+  seo {
+    ...SeoFragment
+  }
+  sys {
+    id
+  }
+  title
+  summary
+  slug
+  pageId
+  buttonLink {
+    linkUrl
+    linkLabel
+    linkTarget
+  }
+  content: contentCollection(limit: $contentCollectionLimit) {
+    items {
+      ... on Anchor {
+        ...AnchorFragment
+      }
+      ... on ButtonLinkComponent {
+        buttonStyle
+        linkUrl
+        linkLabel
+        linkTarget
+      }
+      ... on ComponentBanner {
+        ...ComponentBannerFragment
+      }
+      ... on ComponentCta {
+        ...ComponentCtaFragment
+      }
+      ... on ComponentGrid {
+        ...ComponentGridFragment
+      }
+      ... on ComponentQuote {
+        ...ComponentQuoteFragment
+      }
+      ... on ComponentTable {
+        ...ComponentTableFragment
+      }
+      ... on ComponentTip {
+        ...ComponentTipFragment
+      }
+      ... on ComponentTwoColumnContentList {
+        ...ComponentTwoColumnContentListFragment
+      }
+      ... on ComponentTwoColumnCta {
+        ...ComponentTwoColumnCtaFragment
+      }
+      ... on EmbeddedMedia {
+        ...EmbeddedMediaFragment
+      }
+      ... on FeaturedContentGrid {
+        ...FeaturedContentGridFragment
+      }
+    }
+  }
+}

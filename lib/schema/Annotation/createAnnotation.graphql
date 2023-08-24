@@ -1,0 +1,41 @@
+mutation createAnnotation(
+  $contentId: String!
+  $contentImageSrc: String
+  $contentSlug: String
+  $contentTitle: String
+  $endKey: Int
+  $endOffset: Int
+  $endTextIndex: Int
+  $highlightedText: String!
+  $startKey: Int
+  $startOffset: Int
+  $startTextIndex: Int
+  $userId: String!
+  $createdAt: DateTime
+  $updatedAt: DateTime
+  $deleted: Boolean
+  $note: String
+) {
+  insertOneAnnotation(
+    data: {
+      contentId: $contentId
+      contentImageSrc: $contentImageSrc
+      contentSlug: $contentSlug
+      contentTitle: $contentTitle
+      endKey: $endKey
+      endOffset: $endOffset
+      endTextIndex: $endTextIndex
+      highlightedText: $highlightedText
+      startKey: $startKey
+      startOffset: $startOffset
+      startTextIndex: $startTextIndex
+      userId: $userId
+      createdAt: $createdAt
+      updatedAt: $updatedAt
+      deleted: $deleted
+      note: $note
+    }
+  ) {
+    _id
+  }
+}

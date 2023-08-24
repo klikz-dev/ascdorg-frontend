@@ -1,0 +1,7 @@
+#import "./fragments/componentBannerFragment.graphql"
+
+query GetComponentBanner($preview: Boolean, $id: String!) {
+  banner: componentBanner(id: $id, preview: $preview) {
+    ...ComponentBannerFragment
+  }
+}

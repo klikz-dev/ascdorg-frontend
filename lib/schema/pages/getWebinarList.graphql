@@ -1,0 +1,7 @@
+query GetWebinarList($preview: Boolean, $limit: Int = 100) {
+  webinars: webinarCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

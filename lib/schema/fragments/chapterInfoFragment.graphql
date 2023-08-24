@@ -1,0 +1,10 @@
+fragment ChapterInfo on Chapter {
+  sys {
+    id
+  }
+  title
+  label
+  slug
+  freeChapter
+  studyGuide
+}

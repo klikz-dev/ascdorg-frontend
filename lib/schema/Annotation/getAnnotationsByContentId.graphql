@@ -1,0 +1,13 @@
+#import "./fragments/annotationFragment.graphql"
+
+query getAnnotationsByContentId(
+  $userId: String
+  $contentId: String
+  $deleted: Boolean
+) {
+  annotations(
+    query: { userId: $userId, contentId: $contentId, deleted: $deleted }
+  ) {
+    ...AnnotationFragment
+  }
+}

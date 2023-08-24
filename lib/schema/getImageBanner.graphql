@@ -1,0 +1,7 @@
+#import "./fragments/imageBannerFragment.graphql"
+
+query GetImageBanner($preview: Boolean, $id: String!) {
+  imageBanner(id: $id, preview: $preview) {
+    ...ImageBannerFragment
+  }
+}

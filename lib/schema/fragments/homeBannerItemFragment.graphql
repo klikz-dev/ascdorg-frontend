@@ -1,0 +1,47 @@
+#import "./imageFragment.graphql"
+#import "./buttonLinkComponentFragment.graphql"
+
+fragment HomeBannerItemFragment on HomeBannerItemComponent {
+  displayTitle
+  bodyText {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          fileName
+          url
+          width
+          height
+          contentType
+        }
+        hyperlink {
+          title
+          fileName
+          url
+          contentType
+        }
+      }
+    }
+  }
+  imageContent {
+    ...ImageFragment
+  }
+  backgroundColor
+  button1 {
+    ... on ButtonLinkComponent {
+      mainButtonButtonStyle: buttonStyle
+      mainButtonLinkUrl: linkUrl
+      mainButtonLinkLabel: linkLabel
+      mainButtonLinkTarget: linkTarget
+      mainButtonId: id
+    }
+  }
+  button2 {
+    ...ButtonLinkComponentFragment
+  }
+}

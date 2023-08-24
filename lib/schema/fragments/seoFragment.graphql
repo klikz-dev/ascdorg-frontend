@@ -1,0 +1,19 @@
+#import "./imageFragment.graphql"
+
+fragment SeoFragment on Seo {
+  title
+  description
+  image {
+    ...ImageFragment
+  }
+  pageUrl
+  ogType
+  twitterSite
+  siteName
+  locale
+  twitterCardType
+  twitterImage {
+    ...ImageFragment
+  }
+  id
+}

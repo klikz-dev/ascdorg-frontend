@@ -1,0 +1,33 @@
+#import "./seoFragment.graphql"
+#import "./imageFragment.graphql"
+
+fragment ProfileFragment on Profile {
+  featured
+  role
+  experience
+  position
+  linkedIn
+  twitter
+  youTube
+  facebook
+  instagram
+  profileType: profileTypeCollection(limit: $profileTypeLimit) {
+    items {
+      title
+    }
+  }
+  expertise: expertiseCollection(limit: $expertiseLimit) {
+    items {
+      title
+    }
+  }
+  areasOfExpertise: areasOfExpertiseCollection(limit: $expertiseLimit) {
+    items {
+      title
+    }
+  }
+  seo {
+    ...SeoFragment
+  }
+  authorStatus
+}

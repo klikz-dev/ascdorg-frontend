@@ -1,0 +1,31 @@
+#import "../fragments/bookFragment.graphql"
+#import "../fragments/chapterInfoFragment.graphql"
+
+query GetBookNoLinks(
+  $preview: Boolean
+  $limit: Int
+  $where: BookFilter
+  $order: [BookOrder]
+  $chaptersLimit: Int
+  $bookVersionLimit: Int
+  $collectionLimit: Int
+) {
+  books: bookCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...BookFragment
+      description {
+        json
+      }
+      chapters: chaptersCollection(limit: $chaptersLimit) {
+        items {
+          ...ChapterInfo
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+query GetUserAccessById($userId: ID!) {
+  access(uid: $userId)
+    @rest(
+      type: "UserAccess"
+      path: "/publisher/conversion/list?{args}"
+      method: "GET"
+    ) {
+    items: conversions {
+      user_access {
+        expire_date
+        user {
+          personal_name
+        }
+      }
+      term {
+        name
+        type
+        payment_billing_plan_table {
+          period
+          priceValue
+        }
+        payment_force_auto_renew
+      }
+    }
+  }
+}

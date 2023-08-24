@@ -1,0 +1,19 @@
+#import "../fragments/pageFragmentOne.graphql"
+
+query GetPageBySlugOne(
+  $preview: Boolean
+  $where: PageFilter
+  $contentCollectionLimit: Int = 40
+  $limit: Int
+  $ctaLimit: Int = 10
+  $ctaLinksLimit: Int = 10
+  $gridItemsLimit: Int = 18
+  $twoColCtaListItemsLimit: Int = 10
+  $tableContentLimit: Int = 9
+) {
+  pages: pageCollection(preview: $preview, where: $where, limit: $limit) {
+    items {
+      ...PageDetailFragmentOne
+    }
+  }
+}

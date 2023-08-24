@@ -1,0 +1,58 @@
+#import "./buttonLinkComponentFragment.graphql"
+
+fragment ComponentRichTextFragment on ComponentRichText {
+  title
+  centerTitle
+  richTextBody: body {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          url
+          width
+          height
+          contentType
+        }
+        hyperlink {
+          title
+          url
+          contentType
+        }
+      }
+      entries {
+        hyperlink {
+          ... on Page {
+            sys {
+              id
+            }
+            slug
+          }
+        }
+        inline {
+          sys {
+            id
+          }
+          __typename
+          ... on ButtonLinkComponent {
+            ...ButtonLinkComponentFragment
+          }
+        }
+        block {
+          sys {
+            id
+          }
+          __typename
+          ... on ButtonLinkComponent {
+            ...ButtonLinkComponentFragment
+          }
+        }
+      }
+    }
+  }
+  centerBody
+}

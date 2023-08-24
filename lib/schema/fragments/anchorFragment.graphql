@@ -1,0 +1,3 @@
+fragment AnchorFragment on Anchor {
+  id
+}

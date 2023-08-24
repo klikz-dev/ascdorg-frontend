@@ -1,0 +1,39 @@
+query GetUserAccount($userId: ID!) {
+  userAccount(uid: $userId)
+    @rest(
+      type: "UserAccount"
+      path: "/publisher/user/get?{args}"
+      method: "GET"
+    ) {
+    user {
+      uid
+      first_name
+      last_name
+      name: personal_name
+      email
+      create_date
+      custom_fields {
+        fieldName
+        value
+      }
+    }
+    access(uid: $userId)
+      @rest(
+        type: "UserAccess"
+        path: "/publisher/conversion/list?{args}"
+        method: "GET"
+      ) {
+      items: conversions {
+        user_access {
+          granted
+          resource {
+            name
+          }
+        }
+        term {
+          name
+        }
+      }
+    }
+  }
+}

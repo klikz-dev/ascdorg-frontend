@@ -1,0 +1,12 @@
+mutation updateAnnotation(
+  $id: ObjectId!
+  $updatedAt: DateTime
+  $note: String!
+) {
+  updateOneAnnotation(
+    query: { _id: $id }
+    set: { updatedAt: $updatedAt, note: $note }
+  ) {
+    _id
+  }
+}

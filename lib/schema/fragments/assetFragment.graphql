@@ -1,0 +1,10 @@
+fragment AssetFragment on Asset {
+  title
+  description
+  contentType
+  fileName
+  url
+  size
+  width
+  height
+}

@@ -1,0 +1,21 @@
+#import "../fragments/pressReleaseBodyFragment.graphql"
+
+query GetPressReleaseBody(
+  $preview: Boolean
+  $limit: Int
+  $where: PressReleaseFilter
+  $order: [PressReleaseOrder]
+  $ctaLimit: Int = 4
+  $ctaLinksLimit: Int = 4
+) {
+  pressReleases: pressReleaseCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...PressReleaseBodyFragment
+    }
+  }
+}

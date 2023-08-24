@@ -1,0 +1,55 @@
+export const card = {
+  thumbnail: {
+    __typename: 'Image',
+    alternate: 'Crystal Edwards',
+    title: 'Crystal Edwards',
+    imgSrc: null,
+    imageContentful: null,
+    imageBynder: [
+      {
+        id: 'D4A47DA3-4391-4D8B-B15ABEDBBC7B990B',
+        src: 'https://library.ascd.org/m/7546d2f13a072c74/webimage-crystal_edwards.jpg',
+        name: 'crystal_edwards',
+        type: 'image',
+        width: 300,
+        height: 370,
+        archive: 0,
+        brandId: '2154F1D0-CD10-4BE9-8B8E3480E8546AB1',
+        limited: 0,
+        fileSize: 38960,
+        isPublic: 0,
+        original: null,
+        copyright: null,
+        extension: ['jpg'],
+        thumbnails: {
+          mini: 'https://library.ascd.org/m/7546d2f13a072c74/mini-crystal_edwards.jpg',
+          thul: 'https://library.ascd.org/m/7546d2f13a072c74/thul-crystal_edwards.jpg',
+          webimage:
+            'https://library.ascd.org/m/7546d2f13a072c74/webimage-crystal_edwards.jpg',
+        },
+        dateCreated: '2021-10-29T19:44:48Z',
+        description: null,
+        orientation: 'portrait',
+        watermarked: 0,
+        dateModified: '2021-10-29T19:44:48Z',
+        datePublished: '2021-10-29T18:52:13Z',
+        videoPreviewURLs: [],
+      },
+    ],
+  },
+  title: 'Crystal M. Edwards',
+  titleAlignment: 'left',
+  bodyAlignment: 'left',
+  body: '__Principal, William D. Kelley School, Philadelphia, PA__\n\nCrystal M. Edwards serves as a principal in one of the largest urban school districts. Edwards is the visionary behind the innovative nonprofit organization Empowering Single Moms, Inc.',
+  linkButton: null,
+  buttonLink: {
+    __typename: 'ButtonLinkComponent',
+    linkUrl: '/people/crystal-edwards',
+    linkTarget: 'popup',
+    linkLabel: 'Read more',
+  },
+  link: null,
+  cta: null,
+}
+
+export const pageId = 'governance'

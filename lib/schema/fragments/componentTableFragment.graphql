@@ -1,0 +1,18 @@
+fragment ComponentTableFragment on ComponentTable {
+  title
+  tableRowContent: tableRowContentCollection(limit: $tableContentLimit) {
+    items {
+      title
+      tableColumnContent: tableColumnContentCollection(
+        limit: $tableContentLimit
+      ) {
+        items {
+          title
+          columnContent {
+            json
+          }
+        }
+      }
+    }
+  }
+}

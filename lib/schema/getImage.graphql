@@ -1,0 +1,7 @@
+#import "./fragments/imageFragment.graphql"
+
+query GetImage($preview: Boolean, $id: String!) {
+  image(id: $id, preview: $preview) {
+    ...ImageFragment
+  }
+}

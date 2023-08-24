@@ -1,0 +1,27 @@
+#import "./horizontalCarouselFragment.graphql"
+#import "./memberPricingFragment.graphql"
+#import "./podcastFragment.graphql"
+#import "./profileFragment.graphql"
+#import "./searchCarouselFragment.graphql"
+
+fragment PageDetailFragmentTwo on Page {
+  content: contentCollection(limit: $contentCollectionLimit) {
+    items {
+      ... on HorizontalCarouselComponent {
+        ...HorizontalCarouselFragment
+      }
+      ... on MemberPricingComponent {
+        ...MemberPricingFragment
+      }
+      ... on Podcast {
+        ...PodcastFragment
+      }
+      ... on Profile {
+        ...ProfileFragment
+      }
+      ... on SearchCarouselComponent {
+        ...SearchCarouselFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+#import "../fragments/articleFragment.graphql"
+#import "../fragments/articleFullFragment.graphql"
+
+query GetArticle(
+  $preview: Boolean
+  $limit: Int
+  $where: ArticleFilter
+  $order: [ArticleOrder]
+) {
+  articles: articleCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...ArticleFragment
+      ...ArticleFullFragment
+    }
+  }
+}

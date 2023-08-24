@@ -1,0 +1,7 @@
+#import "./fragments/searchCarouselFragment.graphql"
+
+query GetSearchCarousel($preview: Boolean, $id: String!) {
+  searchCarousel: searchCarouselComponent(id: $id, preview: $preview) {
+    ...SearchCarouselFragment
+  }
+}

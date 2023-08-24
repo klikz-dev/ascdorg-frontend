@@ -1,0 +1,109 @@
+#import "./anchorFragment.graphql"
+#import "./buttonLinkComponentFragment.graphql"
+#import "./componentCtaFragment.graphql"
+#import "./componentGridFragment.graphql"
+#import "./componentTwoColumnCtaFragment.graphql"
+#import "./embeddedMediaFragment.graphql"
+#import "./imageFragment.graphql"
+#import "./registerNowButtonFragment.graphql"
+#import "./seoFragment.graphql"
+#import "./twoColumnCtaTextComponentFragment.graphql"
+#import "./subnavComponentFragment.graphql"
+
+fragment EventDetailFragment on Event {
+  title
+  slug
+  eventUrlDestination
+  eventUrlLabel
+  eventUrlTarget
+  eventId
+  featured
+  premium
+  dateTime
+  endingTime
+  location
+  type {
+    title
+  }
+  webinarLink
+  priceMember
+  nonMemberPrice
+  taxJar {
+    title
+    taxJarId
+  }
+  topic {
+    title
+  }
+  topicSecondary: topicSecondaryCollection(limit: $secondaryTopicsLimit) {
+    items {
+      title
+    }
+  }
+  description
+  otherModules: otherModulesCollection(limit: $otherModulesLimit) {
+    items {
+      ... on Anchor {
+        ...AnchorFragment
+      }
+      ... on ButtonLinkComponent {
+        ...ButtonLinkComponentFragment
+      }
+      ... on ComponentCta {
+        ...ComponentCtaFragment
+      }
+      ... on ComponentGrid {
+        ...ComponentGridFragment
+      }
+      ... on ComponentRichText {
+        title
+        centerTitle
+        richTextBody: body {
+          json
+        }
+        centerBody
+      }
+      ... on ComponentTwoColumnCta {
+        ...ComponentTwoColumnCtaFragment
+      }
+      ... on TwoColumnCtaTextComponent {
+        ...TwoColumnCtaTextComponentFragment
+      }
+      ... on SubNavComponent {
+        ...SubNavComponentFragment
+      }
+    }
+  }
+  link
+  eventDetails {
+    json
+  }
+  seo {
+    ...SeoFragment
+  }
+  thumbnail {
+    ...ImageFragment
+  }
+  linkButton {
+    ...RegisterNowButtonFragment
+  }
+  embeddedMediaContent {
+    ...EmbeddedMediaFragment
+  }
+  button1 {
+    ...AnchorFragment
+    ...ButtonLinkComponentFragment
+  }
+  button2 {
+    ... on Anchor {
+      buttonTwoId: id
+    }
+    ... on ButtonLinkComponent {
+      buttonTwoButtonStyle: buttonStyle
+      buttonTwoLinkUrl: linkUrl
+      buttonTwoLinkLabel: linkLabel
+      buttonTwoLinkTarget: linkTarget
+      buttonTwoId: id
+    }
+  }
+}

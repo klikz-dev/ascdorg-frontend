@@ -1,0 +1,31 @@
+#import "../fragments/imageFragment.graphql"
+
+query getAffiliates($preview: Boolean, $limit: Int, $affiliateLimit: Int = 60) {
+  affiliateLocations: affiliateLocationCollection(
+    limit: $limit
+    preview: $preview
+  ) {
+    items {
+      title
+      affiliates: affiliatesCollection(limit: $affiliateLimit) {
+        items {
+          sys {
+            id
+          }
+          title
+          slug
+          description {
+            json
+          }
+          active
+          contactInfo {
+            json
+          }
+          thumbnail {
+            ...ImageFragment
+          }
+        }
+      }
+    }
+  }
+}

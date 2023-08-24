@@ -1,0 +1,16 @@
+#import "./imageFragment.graphql"
+
+fragment VideoFragment on Video {
+  videoId
+  topic {
+    title
+  }
+  slug
+  premium
+  title
+  date
+  url
+  thumbnail {
+    ...ImageFragment
+  }
+}

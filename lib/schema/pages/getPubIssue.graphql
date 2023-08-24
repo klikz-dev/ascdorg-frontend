@@ -1,0 +1,36 @@
+#import "../fragments/pubissueFragment.graphql"
+#import "../fragments/imageFragment.graphql"
+#import "../fragments/pubissueSummaryFragment.graphql"
+
+query GetPubIssue(
+  $preview: Boolean
+  $pubissueLimit: Int
+  $pubissuesLimit: Int
+  $wherePubissue: PubissueFilter
+  $wherePubissues: PubissueFilter
+  $order: [PubissueOrder]
+  $articlesLimit: Int = 30
+) {
+  publication: pubissueCollection(
+    limit: $pubissueLimit
+    preview: $preview
+    where: $wherePubissue
+    order: $order
+  ) {
+    items {
+      ...PubissueFragment
+    }
+  }
+
+  publications: pubissueCollection(
+    preview: $preview
+    limit: $pubissuesLimit
+    where: $wherePubissues
+    order: $order
+  ) {
+    total
+    items {
+      ...PubissueSummaryFragment
+    }
+  }
+}

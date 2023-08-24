@@ -1,0 +1,7 @@
+query GetPodcastList($preview: Boolean, $limit: Int = 100) {
+  podcasts: podcastCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

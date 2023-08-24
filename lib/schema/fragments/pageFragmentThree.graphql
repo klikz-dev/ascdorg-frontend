@@ -1,0 +1,27 @@
+#import "./spotlightCarouselFragment.graphql"
+#import "./subnavComponentFragment.graphql"
+#import "./valuePropositionCtaFragment.graphql"
+#import "./videoFragment.graphql"
+#import "./twoColumnCtaTextComponentFragment.graphql"
+
+fragment PageDetailFragmentThree on Page {
+  content: contentCollection(limit: $contentCollectionLimit) {
+    items {
+      ... on SpotlightCarouselComponent {
+        ...SpotlightCarouselFragment
+      }
+      ... on SubNavComponent {
+        ...SubNavComponentFragment
+      }
+      ... on ValuePropositionCta {
+        ...ValuePropositionCtaFragment
+      }
+      ... on Video {
+        ...VideoFragment
+      }
+      ... on TwoColumnCtaTextComponent {
+        ...TwoColumnCtaTextComponentFragment
+      }
+    }
+  }
+}

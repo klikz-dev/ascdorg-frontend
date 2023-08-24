@@ -1,0 +1,18 @@
+#import "../fragments/pageFragmentTwo.graphql"
+
+query GetPageBySlugTwo(
+  $preview: Boolean
+  $limit: Int
+  $where: PageFilter
+  $contentCollectionLimit: Int = 40
+  $memberPricingLimit: Int = 30
+  $horizontalCarouselLimit: Int = 10
+  $profileTypeLimit: Int = 10
+  $expertiseLimit: Int = 10
+) {
+  pages: pageCollection(preview: $preview, where: $where, limit: $limit) {
+    items {
+      ...PageDetailFragmentTwo
+    }
+  }
+}

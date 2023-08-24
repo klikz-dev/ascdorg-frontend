@@ -1,0 +1,56 @@
+#import "../fragments/profileFragment.graphql"
+#import "../fragments/seoFragment.graphql"
+#import "../fragments/articleFragment.graphql"
+#import "../fragments/blogFragment.graphql"
+#import "../fragments/bookFragment.graphql"
+#import "../fragments/videoFragment.graphql"
+
+query GetProfile(
+  $preview: Boolean
+  $limit: Int
+  $articleLimit: Int
+  $bookLimit: Int
+  $videoLimit: Int
+  $where: ProfileFilter
+  $order: [ProfileOrder]
+  $bookVersionLimit: Int = 5
+  $authorsLimit: Int = 10
+  $profileTypeLimit: Int = 10
+  $expertiseLimit: Int = 10
+  $collectionLimit: Int = 0
+) {
+  profiles: profileCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...ProfileFragment
+      linkedContent: linkedFrom {
+        blogs: blogCollection(limit: $articleLimit) {
+          items {
+            ...BlogFragment
+          }
+        }
+        articles: articleCollection(limit: $articleLimit) {
+          items {
+            ...ArticleFragment
+          }
+        }
+
+        videos: videoCollection(limit: $videoLimit) {
+          items {
+            ...VideoFragment
+          }
+        }
+
+        books: bookCollection(limit: $bookLimit) {
+          items {
+            ...BookFragment
+          }
+        }
+      }
+    }
+  }
+}

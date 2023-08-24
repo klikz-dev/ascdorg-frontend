@@ -1,0 +1,7 @@
+#import "./fragments/noteFragment.graphql"
+
+query getNoteByAnnotationId($annotationId: String) {
+  note(query: { annotationId: $annotationId }) {
+    ...NoteFragment
+  }
+}

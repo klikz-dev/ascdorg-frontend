@@ -1,0 +1,18 @@
+#import "./seoFragment.graphql"
+
+fragment PressReleaseFullFragment on PressRelease {
+  sys {
+    id
+  }
+  topicSecondary: topicSecondaryCollection(limit: $secondaryTopicsLimit) {
+    items {
+      title
+    }
+  }
+  blurb {
+    json
+  }
+  seo {
+    ...SeoFragment
+  }
+}

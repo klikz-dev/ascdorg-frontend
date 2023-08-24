@@ -1,0 +1,7 @@
+query GetVideoList($preview: Boolean, $limit: Int = 100) {
+  videos: videoCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

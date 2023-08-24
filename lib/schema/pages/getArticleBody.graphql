@@ -1,0 +1,21 @@
+#import "../fragments/articleBodyFragment.graphql"
+
+query GetArticleBody(
+  $preview: Boolean
+  $limit: Int
+  $where: ArticleFilter
+  $order: [ArticleOrder]
+  $ctaLimit: Int = 4
+  $ctaLinksLimit: Int = 4
+) {
+  articles: articleCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...ArticleBodyFragment
+    }
+  }
+}

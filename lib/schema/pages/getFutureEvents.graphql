@@ -1,0 +1,19 @@
+#import "../fragments/eventListFragment.graphql"
+
+query GetFutureEvents(
+  $preview: Boolean
+  $where: EventFilter
+  $limit: Int
+  $order: [EventOrder]
+) {
+  futureEvents: eventCollection(
+    preview: $preview
+    where: $where
+    order: $order
+    limit: $limit
+  ) {
+    items {
+      ...EventListFragment
+    }
+  }
+}

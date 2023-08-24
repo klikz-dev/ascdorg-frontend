@@ -1,0 +1,16 @@
+#import "./componentRichTextFragment.graphql"
+#import "./componentEmbedHtmlFragment.graphql"
+
+fragment PageDetailFragmentFour on Page {
+  content: contentCollection(limit: $contentCollectionLimit, skip: $skip) {
+    items {
+      ... on ComponentRichText {
+        ...ComponentRichTextFragment
+      }
+
+      ... on EmbedHtmlComponent {
+        ...EmbedHtmlComponentFragment
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+#import "./profileSummaryFragment.graphql"
+
+fragment FeaturedContentHorizontalFragment on FeaturedContentHorizontal {
+  indexName
+  displayTitle
+  contentTypes
+  topics
+  keywords
+  featuredAuthors: featuredAuthorsCollection(limit: 3) {
+    items {
+      ...ProfileSummaryFragment
+    }
+  }
+  dateLowerRange
+  dateUpperRange
+  featured
+}

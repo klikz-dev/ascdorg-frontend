@@ -1,0 +1,7 @@
+query GetCollectionList($preview: Boolean, $limit: Int = 100) {
+  collections: collectionCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

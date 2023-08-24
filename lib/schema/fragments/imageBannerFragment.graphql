@@ -1,0 +1,62 @@
+#import "./imageFragment.graphql"
+#import "./buttonLinkComponentFragment.graphql"
+
+fragment ImageBannerFragment on ImageBanner {
+  displayTitle
+  imageContent {
+    ...ImageFragment
+  }
+  body {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          fileName
+          url
+          width
+          height
+          contentType
+        }
+        hyperlink {
+          title
+          fileName
+          url
+          contentType
+        }
+      }
+      entries {
+        hyperlink {
+          ... on Page {
+            sys {
+              id
+            }
+            slug
+          }
+        }
+        inline {
+          sys {
+            id
+          }
+          __typename
+          ... on ButtonLinkComponent {
+            ...ButtonLinkComponentFragment
+          }
+        }
+        block {
+          sys {
+            id
+          }
+          __typename
+          ... on ButtonLinkComponent {
+            ...ButtonLinkComponentFragment
+          }
+        }
+      }
+    }
+  }
+}

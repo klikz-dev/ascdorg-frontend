@@ -1,0 +1,4 @@
+fragment TaxJarCategoryFragment on TaxJarCategory {
+  taxJarId
+  title
+}

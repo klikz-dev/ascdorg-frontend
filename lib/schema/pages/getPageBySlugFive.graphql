@@ -1,0 +1,16 @@
+#import "../fragments/pageFragmentFive.graphql"
+
+query GetPageBySlugFive(
+  $preview: Boolean
+  $skip: Int
+  $limit: Int
+  $where: PageFilter
+  $memberPriceCollectionLimit: Int
+  $memberPriceItemCollectionLimit: Int
+) {
+  pages: pageCollection(preview: $preview, where: $where, limit: $limit) {
+    items {
+      ...PageDetailFragmentFive
+    }
+  }
+}

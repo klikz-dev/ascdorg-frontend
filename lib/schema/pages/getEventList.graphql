@@ -1,0 +1,7 @@
+query GetEventList($preview: Boolean, $limit: Int = 100) {
+  events: eventCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

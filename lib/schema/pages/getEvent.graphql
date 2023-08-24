@@ -1,0 +1,27 @@
+#import "../fragments/eventFragment.graphql"
+
+query GetEvent(
+  $preview: Boolean
+  $where: EventFilter
+  $limit: Int
+  $order: [EventOrder]
+  $secondaryTopicsLimit: Int = 5
+  $ctaLinksLimit: Int = 4
+  $gridItemsLimit: Int = 20
+  $ctaLimit: Int = 4
+  $otherModulesLimit: Int = 35
+  $ctaLinksOneLimit: Int = 5
+  $ctaLinksTwoLimit: Int = 5
+  $subNavComponentLimit: Int = 5
+) {
+  events: eventCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...EventDetailFragment
+    }
+  }
+}

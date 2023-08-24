@@ -1,0 +1,7 @@
+query GetPressReleaseList($preview: Boolean, $limit: Int = 100) {
+  pressReleases: pressReleaseCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

@@ -1,0 +1,11 @@
+#import "./imageFragment.graphql"
+
+fragment ComponentQuoteFragment on ComponentQuote {
+  title
+  description
+  name
+  thumbnail {
+    ...ImageFragment
+  }
+  expertise
+}

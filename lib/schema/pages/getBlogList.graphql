@@ -1,0 +1,7 @@
+query GetBlogList($preview: Boolean, $limit: Int = 100) {
+  blogs: blogCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

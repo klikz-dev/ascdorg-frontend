@@ -1,0 +1,7 @@
+query GetPageList($preview: Boolean, $limit: Int) {
+  pages: pageCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

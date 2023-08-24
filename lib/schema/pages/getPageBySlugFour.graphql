@@ -1,0 +1,15 @@
+#import "../fragments/pageFragmentFour.graphql"
+
+query GetPageBySlugFour(
+  $preview: Boolean
+  $skip: Int
+  $limit: Int
+  $where: PageFilter
+  $contentCollectionLimit: Int
+) {
+  pages: pageCollection(preview: $preview, where: $where, limit: $limit) {
+    items {
+      ...PageDetailFragmentFour
+    }
+  }
+}

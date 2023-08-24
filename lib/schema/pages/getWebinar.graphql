@@ -1,0 +1,38 @@
+#import "../fragments/webinarFragment.graphql"
+#import "../fragments/webinarFullFragment.graphql"
+
+query GetWebinar(
+  $preview: Boolean
+  $webinarLimit: Int
+  $webinarsLimit: Int
+  $whereWebinar: WebinarFilter
+  $whereWebinars: WebinarFilter
+  $orderWebinar: [WebinarOrder]
+  $orderWebinars: [WebinarOrder]
+  $bookVersionLimit: Int = 3
+  $collectionLimit: Int = 0
+) {
+  webinar: webinarCollection(
+    limit: $webinarLimit
+    preview: $preview
+    where: $whereWebinar
+    order: $orderWebinar
+  ) {
+    items {
+      ...WebinarFragment
+      ...WebinarFullFragment
+    }
+  }
+
+  webinars: webinarCollection(
+    preview: $preview
+    limit: $webinarsLimit
+    where: $whereWebinars
+    order: $orderWebinars
+  ) {
+    items {
+      ...WebinarFragment
+      ...WebinarFullFragment
+    }
+  }
+}

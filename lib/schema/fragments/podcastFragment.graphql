@@ -1,0 +1,11 @@
+#import "./imageFragment.graphql"
+
+fragment PodcastFragment on Podcast {
+  wistiaId
+  date
+  title
+  slug
+  thumbnail {
+    ...ImageFragment
+  }
+}

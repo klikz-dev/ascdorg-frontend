@@ -1,0 +1,19 @@
+#import "./imageFragment.graphql"
+
+fragment ValuePropositionCtaFragment on ValuePropositionCta {
+  ctaAdditionalInfo
+  title
+  ctaTagline
+  ctaValuePropositionItems: ctaValuePropositionItemsCollection(
+    limit: $ctaValuePropositionLimit
+  ) {
+    items {
+      icon {
+        ...ImageFragment
+      }
+      itemTagline
+      itemDescription
+      itemCtaUrl
+    }
+  }
+}

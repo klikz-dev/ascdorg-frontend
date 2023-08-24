@@ -1,0 +1,114 @@
+#import "./componentCtaFragment.graphql"
+#import "./embeddedMediaFragment.graphql"
+#import "./imageFragment.graphql"
+#import "./podcastFragment.graphql"
+#import "./componentQuoteFragment.graphql"
+#import "./componentRichTextFragment.graphql"
+#import "./componentTipFragment.graphql"
+#import "./componentTwoColumnCtaFragment.graphql"
+#import "./componentBannerFragment.graphql"
+#import "./videoFragment.graphql"
+
+fragment PressReleaseBodyFragment on PressRelease {
+  body {
+    json
+    links {
+      assets {
+        block {
+          sys {
+            id
+          }
+          __typename
+          title
+          fileName
+          url
+          width
+          height
+          contentType
+        }
+        hyperlink {
+          title
+          fileName
+          url
+          contentType
+        }
+      }
+      entries {
+        inline {
+          sys {
+            id
+          }
+          __typename
+          ... on ComponentRichText {
+            ...ComponentRichTextFragment
+          }
+          ... on ComponentTwoColumnCta {
+            ...ComponentTwoColumnCtaFragment
+          }
+          ... on ComponentBanner {
+            ...ComponentBannerFragment
+          }
+          ... on Image {
+            ...ImageFragment
+          }
+        }
+        block {
+          sys {
+            id
+          }
+          __typename
+          ... on Anchor {
+            id
+          }
+          ... on ComponentCta {
+            ...ComponentCtaFragment
+          }
+          ... on EmbeddedMedia {
+            ...EmbeddedMediaFragment
+          }
+          ... on Image {
+            ...ImageFragment
+          }
+          ... on Podcast {
+            ...PodcastFragment
+          }
+          ... on ComponentQuote {
+            ...ComponentQuoteFragment
+          }
+          ... on ComponentRichText {
+            ...ComponentRichTextFragment
+          }
+          ... on ComponentTip {
+            ...ComponentTipFragment
+          }
+          ... on ComponentTwoColumnCta {
+            ...ComponentTwoColumnCtaFragment
+          }
+          ... on Video {
+            ...VideoFragment
+          }
+          ... on ComponentTableExtension {
+            title
+            data
+          }
+          ... on ComponentTable {
+            title
+            tableRowContentCollection(limit: 8) {
+              items {
+                title
+                tableColumnContentCollection(limit: 8) {
+                  items {
+                    title
+                    columnContent {
+                      json
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

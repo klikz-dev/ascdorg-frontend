@@ -1,0 +1,50 @@
+#import "./articleFragment.graphql"
+#import "./bookVersionFragment.graphql"
+#import "./imageFragment.graphql"
+#import "./seoFragment.graphql"
+
+fragment PubissueFragment on Pubissue {
+  articles: articlesCollection(limit: $articlesLimit, preview: $preview) {
+    total
+    items {
+      ...ArticleFragment
+    }
+  }
+  sys {
+    id
+  }
+  issueNo
+  shortDescription
+  podcast {
+    wistiaId
+  }
+  seo {
+    ...SeoFragment
+  }
+  description
+  video {
+    videoId
+    topic {
+      title
+    }
+    premium
+    title
+    date
+  }
+  thumbnail {
+    ...ImageFragment
+  }
+  featuredImage {
+    ...ImageFragment
+  }
+  title
+  publicationDate
+  volNo
+  slug
+  bookVersion {
+    ...BookVersionFragment
+  }
+  pdfFreeDownload
+  pdfUrl
+  pdfUrlLabel
+}

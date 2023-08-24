@@ -1,0 +1,7 @@
+query GetBookList($preview: Boolean, $limit: Int = 100) {
+  books: bookCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

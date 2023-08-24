@@ -1,0 +1,13 @@
+fragment ImageFragment on Image {
+  alternate
+  title
+  caption
+  imgSrc @client
+  imageContentful {
+    url
+    size
+    width
+    height
+  }
+  imageBynder
+}

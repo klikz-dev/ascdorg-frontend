@@ -1,0 +1,12 @@
+mutation deleteAnnotationsByContentId(
+  $contentId: String!
+  $userId: String!
+  $updatedAt: DateTime
+) {
+  updateManyAnnotations(
+    query: { contentId: $contentId, userId: $userId }
+    set: { updatedAt: $updatedAt, deleted: true }
+  ) {
+    modifiedCount
+  }
+}

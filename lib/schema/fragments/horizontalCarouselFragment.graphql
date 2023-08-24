@@ -1,0 +1,134 @@
+#import "./imageFragment.graphql"
+#import "./carouselArticleFragment.graphql"
+#import "./carouselBlogFragment.graphql"
+
+fragment HorizontalCarouselFragment on HorizontalCarouselComponent {
+  title
+  ctaUrlTarget
+  ctaUrlLink
+  ctaLabel
+  scrollByAmount
+  type
+  horizontalCarouselItems: horizontalCarouselItemsCollection(
+    limit: $horizontalCarouselLimit
+  ) {
+    items {
+      ... on Article {
+        ...CarouselArticleFragment
+      }
+      ... on Blog {
+        ...CarouselBlogFragment
+      }
+      ... on Book {
+        bookVersions: bookVersionsCollection(limit: 5) {
+          items {
+            dateRelease
+            productNumber
+            title
+            priceMember
+            priceNonMember
+            taxJar {
+              taxJarId
+            }
+            royaltyFlag
+            digitalFileGuid
+          }
+        }
+        memberBook
+        slug
+        thumbnail {
+          ...ImageFragment
+        }
+        authors: authorsCollection(limit: 5) {
+          items {
+            title
+            email
+          }
+        }
+        bookDescription: description {
+          json
+        }
+      }
+      ... on Collection {
+        memberOriginalPrice
+        originalPrice
+        memberDiscountedPrice
+        discountedPrice
+        productNumber
+        title
+        slug
+        thumbnail {
+          ...ImageFragment
+        }
+        description
+        taxJar {
+          taxJarId
+        }
+      }
+      ... on ComponentGridItem {
+        body
+        title
+        thumbnail {
+          ...ImageFragment
+        }
+      }
+      ... on Event {
+        slug
+        dateTime
+        endingTime
+        thumbnail {
+          ...ImageFragment
+        }
+        title
+        topic {
+          title
+        }
+        eventUrlDestination
+      }
+      ... on Podcast {
+        slug
+        date
+        thumbnail {
+          ...ImageFragment
+        }
+        title
+        topic {
+          title
+        }
+      }
+      ... on Pubissue {
+        slug
+        publicationDate
+        thumbnail {
+          ...ImageFragment
+        }
+        title
+        topics {
+          title
+        }
+      }
+      ... on Video {
+        slug
+        date
+        thumbnail {
+          ...ImageFragment
+        }
+        title
+        topic {
+          title
+        }
+      }
+      ... on Webinar {
+        slug
+        date
+        thumbnail {
+          ...ImageFragment
+        }
+        title
+        topic {
+          title
+        }
+      }
+    }
+  }
+}

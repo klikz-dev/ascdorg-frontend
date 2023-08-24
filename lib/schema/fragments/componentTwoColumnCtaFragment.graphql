@@ -1,0 +1,31 @@
+#import "./imageFragment.graphql"
+#import "./componentButtonFragment.graphql"
+#import "./componentCartButtonFragment.graphql"
+
+fragment ComponentTwoColumnCtaFragment on ComponentTwoColumnCta {
+  title
+  twoColCtaBody: body {
+    json
+  }
+  image {
+    ...ImageFragment
+  }
+  imagePosition
+  cta: ctaCollection(limit: $ctaLimit) {
+    items {
+      ... on ComponentButton {
+        ...ComponentButtonFragment
+      }
+      ... on ButtonLinkComponent {
+        linkLabel
+        linkTarget
+        linkUrl
+      }
+      ... on ComponentCartButton {
+        ...ComponentCartButtonFragment
+      }
+    }
+  }
+  backgroundColor
+  imageFrameStyle
+}

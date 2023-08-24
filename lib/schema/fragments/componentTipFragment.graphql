@@ -1,0 +1,6 @@
+fragment ComponentTipFragment on ComponentTip {
+  title
+  tipBody: body {
+    json
+  }
+}

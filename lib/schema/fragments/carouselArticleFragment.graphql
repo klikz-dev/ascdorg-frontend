@@ -1,0 +1,17 @@
+fragment CarouselArticleFragment on Article {
+  slug
+  image {
+    ...ImageFragment
+  }
+  title
+  topic {
+    title
+  }
+  author: authorsCollection(limit: 7) {
+    items {
+      firstName
+      lastName
+    }
+  }
+  dateTimeStamp: issueDate
+}

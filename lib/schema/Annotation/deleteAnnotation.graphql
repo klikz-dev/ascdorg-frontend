@@ -1,0 +1,8 @@
+mutation deleteAnnotation($id: ObjectId!, $updatedAt: DateTime) {
+  updateOneAnnotation(
+    query: { _id: $id }
+    set: { updatedAt: $updatedAt, deleted: true }
+  ) {
+    _id
+  }
+}

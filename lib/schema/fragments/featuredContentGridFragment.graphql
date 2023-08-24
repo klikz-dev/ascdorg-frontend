@@ -1,0 +1,18 @@
+#import "./buttonLinkComponentFragment.graphql"
+
+fragment FeaturedContentGridFragment on FeaturedContentGrid {
+  indexName
+  displayTitle
+  contentTypes
+  topics
+  keywords
+  authors
+  dateLowerRange
+  dateUpperRange
+  featured
+  premium
+  elArticleType
+  cta {
+    ...ButtonLinkComponentFragment
+  }
+}

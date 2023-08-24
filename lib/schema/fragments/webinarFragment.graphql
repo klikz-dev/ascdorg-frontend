@@ -1,0 +1,15 @@
+#import "./imageFragment.graphql"
+
+fragment WebinarFragment on Webinar {
+  videoId
+  topic {
+    title
+  }
+  slug
+  premium
+  title
+  date
+  thumbnail {
+    ...ImageFragment
+  }
+}

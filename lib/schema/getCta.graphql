@@ -1,0 +1,7 @@
+#import "./fragments/componentCtaFragment.graphql"
+
+query GetCta($preview: Boolean, $id: String!, $ctaLinksLimit: Int = 5) {
+  cta: componentCta(id: $id, preview: $preview) {
+    ...ComponentCtaFragment
+  }
+}

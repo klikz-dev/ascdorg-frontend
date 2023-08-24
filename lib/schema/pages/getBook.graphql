@@ -1,0 +1,51 @@
+#import "../fragments/bookFragment.graphql"
+#import "../fragments/chapterInfoFragment.graphql"
+
+query GetBookPage(
+  $preview: Boolean
+  $limit: Int
+  $where: BookFilter
+  $order: [BookOrder]
+  $chaptersLimit: Int
+  $bookVersionLimit: Int
+  $collectionLimit: Int
+) {
+  books: bookCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...BookFragment
+      description {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              __typename
+              title
+              url
+              width
+              height
+              contentType
+            }
+            hyperlink {
+              title
+              url
+              contentType
+            }
+          }
+        }
+      }
+      chapters: chaptersCollection(limit: $chaptersLimit) {
+        items {
+          ...ChapterInfo
+        }
+      }
+    }
+  }
+}

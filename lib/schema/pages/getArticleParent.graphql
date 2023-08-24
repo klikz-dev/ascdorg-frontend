@@ -1,0 +1,25 @@
+#import "../fragments/pubissueSummaryFragment.graphql"
+
+query GetArticleParent(
+  $preview: Boolean
+  $limit: Int
+  $where: ArticleFilter
+  $order: [ArticleOrder]
+) {
+  articles: articleCollection(
+    preview: $preview
+    limit: $limit
+    where: $where
+    order: $order
+  ) {
+    items {
+      linkedFrom {
+        issue: pubissueCollection(limit: 1) {
+          items {
+            ...PubissueSummaryFragment
+          }
+        }
+      }
+    }
+  }
+}

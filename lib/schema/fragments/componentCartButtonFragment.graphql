@@ -1,0 +1,53 @@
+#import "./imageFragment.graphql"
+
+fragment ComponentCartButtonFragment on ComponentCartButton {
+  associatedProduct {
+    ... on BookVersion {
+      productNumber
+      title
+      priceNonMember
+      priceMember
+      taxJar {
+        taxJarId
+      }
+      digitalFileGuid
+      royaltyFlag
+      dateRelease
+      linkedFrom {
+        bookCollection(limit: 1) {
+          items {
+            slug
+            description {
+              json
+            }
+            thumbnail {
+              ...ImageFragment
+            }
+            authors: authorsCollection(limit: 3) {
+              items {
+                title
+                email
+              }
+            }
+          }
+        }
+      }
+    }
+    ... on Collection {
+      memberOriginalPrice
+      originalPrice
+      memberDiscountedPrice
+      discountedPrice
+      productNumber
+      title
+      slug
+      thumbnail {
+        ...ImageFragment
+      }
+      description
+      taxJar {
+        taxJarId
+      }
+    }
+  }
+}

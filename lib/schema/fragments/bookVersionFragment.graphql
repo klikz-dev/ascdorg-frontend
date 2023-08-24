@@ -1,0 +1,15 @@
+fragment BookVersionFragment on BookVersion {
+  productNumber
+  priceNonMember
+  title
+  priceMember
+  taxJar {
+    taxJarId
+  }
+  digitalFileGuid
+  royaltyFlag
+  bookType {
+    title
+  }
+  dateRelease
+}

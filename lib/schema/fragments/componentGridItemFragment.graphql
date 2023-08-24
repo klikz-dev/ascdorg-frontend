@@ -1,0 +1,35 @@
+#import "./componentButtonFragment.graphql"
+#import "./imageFragment.graphql"
+#import "./componentCartButtonFragment.graphql"
+
+fragment ComponentGridItemFragment on ComponentGridItem {
+  title
+  adminTitle
+  titleAlignment
+  body
+  bodyAlignment
+  link
+  cta {
+    ...ComponentButtonFragment
+  }
+  gridItemButtonLink: buttonLink {
+    ... on ButtonLinkComponent {
+      buttonLinkId: id
+      buttonLinkLinkUrl: linkUrl
+      buttonLinkLinkTarget: linkTarget
+      buttonLinkLinkLabel: linkLabel
+    }
+    ... on ComponentCartButton {
+      ...ComponentCartButtonFragment
+    }
+  }
+  thumbnail {
+    ...ImageFragment
+  }
+  linkButton {
+    eventId: id
+    eventLinkUrl: linkUrl
+    eventLinkTarget: linkTarget
+    eventLinkLabel: linkLabel
+  }
+}

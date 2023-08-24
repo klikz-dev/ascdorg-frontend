@@ -1,0 +1,8 @@
+fragment RegisterNowButtonFragment on RegisterNowButton {
+  buttonStyle
+  linkUrl
+  linkLabel
+  linkTarget
+  id
+  align
+}

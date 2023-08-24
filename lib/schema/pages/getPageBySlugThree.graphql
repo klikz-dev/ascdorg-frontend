@@ -1,0 +1,19 @@
+#import "../fragments/pageFragmentThree.graphql"
+
+query GetPageBySlugThree(
+  $preview: Boolean
+  $limit: Int
+  $where: PageFilter
+  $contentCollectionLimit: Int = 40
+  $spotlightCarouselItemsLimit: Int = 4
+  $subNavComponentLimit: Int = 6
+  $ctaValuePropositionLimit: Int = 6
+  $ctaLinksOneLimit: Int = 5
+  $ctaLinksTwoLimit: Int = 5
+) {
+  pages: pageCollection(preview: $preview, where: $where, limit: $limit) {
+    items {
+      ...PageDetailFragmentThree
+    }
+  }
+}

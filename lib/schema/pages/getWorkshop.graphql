@@ -1,0 +1,25 @@
+#import "../fragments/workshopFragment.graphql"
+
+query GetWorkshop(
+  $preview: Boolean
+  $limit: Int
+  $where: WorkshopFilter
+  $bookVersionLimit: Int = 5
+  $gradesLimit: Int = 5
+  $keywordsLimit: Int = 5
+  $rolesLimit: Int = 4
+  $topicsLimit: Int = 5
+  $materialsLimit: Int = 5
+  $variationsLimit: Int = 5
+  $collectionLimit: Int = 1
+) {
+  workshops: workshopCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+  ) {
+    items {
+      ...WorkshopFragment
+    }
+  }
+}

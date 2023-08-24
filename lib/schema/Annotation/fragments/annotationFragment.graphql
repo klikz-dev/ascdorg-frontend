@@ -1,0 +1,19 @@
+fragment AnnotationFragment on Annotation {
+  _id
+  contentId
+  contentImageSrc
+  contentSlug
+  contentTitle
+  createdAt
+  deleted
+  endKey
+  endOffset
+  endTextIndex
+  highlightedText
+  note
+  startKey
+  startOffset
+  startTextIndex
+  updatedAt
+  userId
+}

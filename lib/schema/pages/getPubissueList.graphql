@@ -1,0 +1,7 @@
+query GetIssueList($preview: Boolean, $limit: Int = 100) {
+  issues: pubissueCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

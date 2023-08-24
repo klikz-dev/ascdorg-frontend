@@ -1,0 +1,19 @@
+#import "../fragments/pressReleaseFragment.graphql"
+
+query GetPartialPressRelease(
+  $preview: Boolean
+  $limit: Int
+  $where: PressReleaseFilter
+  $order: [PressReleaseOrder]
+) {
+  pressReleases: pressReleaseCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...PressReleaseFragment
+    }
+  }
+}

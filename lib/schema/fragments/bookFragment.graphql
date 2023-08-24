@@ -1,0 +1,59 @@
+#import "./imageFragment.graphql"
+#import "./seoFragment.graphql"
+#import "./bookVersionFragment.graphql"
+#import "./profileSummaryFragment.graphql"
+#import "./collectionFragment.graphql"
+
+fragment BookFragment on Book {
+  sys {
+    id
+  }
+  linkedFrom {
+    collections: collectionCollection(limit: $collectionLimit) {
+      items {
+        ...CollectionFragment
+      }
+    }
+  }
+  seo {
+    ...SeoFragment
+  }
+  title
+  slug
+  isbn
+  media {
+    displayTitle
+    wistiaId
+    radio
+  }
+  quickRead
+  pageCount
+  memberBook
+  description {
+    json
+  }
+  topic {
+    title
+  }
+  topicSecondary: topicSecondaryCollection(limit: 5) {
+    items {
+      title
+    }
+  }
+  thumbnail {
+    ...ImageFragment
+  }
+  featuredImage {
+    ...ImageFragment
+  }
+  authors: authorsCollection(limit: 5) {
+    items {
+      ...ProfileSummaryFragment
+    }
+  }
+  bookVersions: bookVersionsCollection(limit: $bookVersionLimit) {
+    items {
+      ...BookVersionFragment
+    }
+  }
+}

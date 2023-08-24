@@ -1,0 +1,5 @@
+fragment ComponentButtonFragment on ComponentButton {
+  title
+  label
+  url
+}

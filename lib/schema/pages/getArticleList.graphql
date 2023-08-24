@@ -1,0 +1,7 @@
+query GetArticleList($preview: Boolean, $limit: Int) {
+  articles: articleCollection(preview: $preview, limit: $limit) {
+    items {
+      slug
+    }
+  }
+}

@@ -1,0 +1,19 @@
+#import "./fragments/imageFragment.graphql"
+
+query GetBookByProductId($productId: String) {
+  book: bookVersionCollection(where: { productNumber: $productId }, limit: 1) {
+    items {
+      productNumber
+      linkedFrom {
+        bookCollection {
+          items {
+            slug
+            thumbnail {
+              ...ImageFragment
+            }
+          }
+        }
+      }
+    }
+  }
+}

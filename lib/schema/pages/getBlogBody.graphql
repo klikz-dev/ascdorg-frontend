@@ -1,0 +1,21 @@
+#import "../fragments/blogBodyFragment.graphql"
+
+query GetBlogBody(
+  $preview: Boolean
+  $limit: Int
+  $where: BlogFilter
+  $order: [BlogOrder]
+  $ctaLimit: Int = 4
+  $ctaLinksLimit: Int = 4
+) {
+  blogs: blogCollection(
+    preview: $preview
+    where: $where
+    limit: $limit
+    order: $order
+  ) {
+    items {
+      ...BlogBodyFragment
+    }
+  }
+}
